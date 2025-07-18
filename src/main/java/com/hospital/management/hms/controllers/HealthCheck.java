@@ -13,7 +13,7 @@ public class HealthCheck {
 
     @GetMapping
     public ResponseEntity<?> getHealthCheck(){
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("SEEMS GOOD!",HttpStatus.OK);
     }
 
 }
