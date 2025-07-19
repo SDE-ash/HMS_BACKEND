@@ -1,5 +1,8 @@
 package com.hospital.management.hms.modal;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Builder
 public class Appointment {
 
     @Id
@@ -26,16 +31,19 @@ public class Appointment {
 
     private String disOrder;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pId")
     private Patient patient;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dId")
     private Doctors doctor;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billiD")
-    private Bill BILL;
+    private Bill bill;
+
+
+    private LocalDateTime aptDate;
 
 }

@@ -29,4 +29,6 @@ public class PatientDTO {
 
     private Bill bill;
 
+    private String email;
+
 }

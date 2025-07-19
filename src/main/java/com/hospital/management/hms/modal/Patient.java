@@ -4,6 +4,8 @@ import com.hospital.management.hms.enums.Gender;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,9 +30,12 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private String email;
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private Gender genders;
 
     private int age;

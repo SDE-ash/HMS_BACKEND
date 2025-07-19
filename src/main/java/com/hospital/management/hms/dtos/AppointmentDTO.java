@@ -1,5 +1,7 @@
 package com.hospital.management.hms.dtos;
 
+import java.time.LocalDateTime;
+
 import com.hospital.management.hms.modal.Bill;
 import com.hospital.management.hms.modal.Doctors;
 import com.hospital.management.hms.modal.Patient;
@@ -28,4 +30,6 @@ public class AppointmentDTO {
     private Doctors doctor;
 
     private Bill BILL;
+
+    private LocalDateTime aptDate;
 }

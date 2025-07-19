@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import com.hospital.management.hms.enums.BILLSTATUS;
 import com.hospital.management.hms.modal.Patient;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,6 +28,7 @@ public class BillDTO {
 
     private LocalDateTime dateTime;
 
+    @Enumerated(EnumType.STRING)
     private BILLSTATUS billStatus;
 
     private Patient patient;
