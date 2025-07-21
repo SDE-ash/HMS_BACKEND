@@ -20,7 +20,9 @@ public class AptServices {
 
 
     public ResponseEntity<?> createAppointment(AppointmentDTO appointmentDTO){
+        
         try{
+            
                 aptRepo.save(Appointment.builder()
                 .aptDate(LocalDateTime.now())
                 .disOrder("cancer")

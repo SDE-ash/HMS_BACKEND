@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.hospital.management.hms.enums.BILLSTATUS;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -37,7 +38,7 @@ public class Bill {
     @Enumerated(EnumType.STRING)
     private BILLSTATUS billStatus;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pId")
     private Patient patient;
 }

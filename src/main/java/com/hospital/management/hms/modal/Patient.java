@@ -40,7 +40,7 @@ public class Patient {
 
     private int age;
 
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "patient")
     private Bill bill;
 
 
