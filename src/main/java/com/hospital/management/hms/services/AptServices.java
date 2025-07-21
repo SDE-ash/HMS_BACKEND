@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.hospital.management.hms.dtos.AppointmentDTO;
 import com.hospital.management.hms.modal.Appointment;
+import com.hospital.management.hms.modal.Bill;
+import com.hospital.management.hms.modal.Patient;
 import com.hospital.management.hms.repoo.AptRepo;
 
 @Service
@@ -20,8 +22,12 @@ public class AptServices {
 
 
     public ResponseEntity<?> createAppointment(AppointmentDTO appointmentDTO){
-        
         try{
+            Patient patient = appointmentDTO.getPatient();
+
+            Bill bill = appointmentDTO.getBILL();
+            bill.setPatient(patient);
+
             
                 aptRepo.save(Appointment.builder()
                 .aptDate(LocalDateTime.now())
