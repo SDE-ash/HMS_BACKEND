@@ -1,7 +1,10 @@
 package com.hospital.management.hms.services;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hospital.management.hms.dtos.AppointmentDTO;
+import com.hospital.management.hms.exceptions.AppointmentNotFoundException;
 import com.hospital.management.hms.modal.Appointment;
 import com.hospital.management.hms.modal.Bill;
 import com.hospital.management.hms.modal.Patient;
@@ -48,4 +52,18 @@ public class AptServices {
         return new ResponseEntity<List<Appointment>>(l, HttpStatus.OK);
     }
 
+
+    public ResponseEntity<?> findAptById(Long apt_id) {
+        Appointment a = aptRepo.findByAptId(apt_id).orElseThrow(()-> new AppointmentNotFoundException("Appoinment not Recorded"));
+        Map<String,Object> aMap = new LinkedHashMap<>();
+                aMap.put("APPOINTMENT ID",a.getAptId());
+                aMap.put("DISORDER", a.getDisOrder().toUpperCase());
+                aMap.put("DATE OF BOOKING", a.getAptDate());
+                aMap.put("DOCTOR NAME", "Dr."+a.getDoctor().getName().toUpperCase());
+                aMap.put("PATIENT NAME", a.getPatient().getName().toUpperCase());
+                aMap.put("BILL STATUS", a.getBill().getBillStatus());
+                return new ResponseEntity<Map<String, Object>>(aMap,HttpStatus.OK);
+    }
 }
+
+

@@ -2,7 +2,7 @@ package com.hospital.management.hms.modal;
 
 import com.hospital.management.hms.enums.Gender;
 
-import jakarta.persistence.CascadeType;
+// import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
