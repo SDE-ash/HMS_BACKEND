@@ -1,5 +1,7 @@
 package com.hospital.management.hms.exceptions;
 
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,5 +31,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleApptNotFound(AppointmentNotFoundException a){
         return new ResponseEntity<String>(a.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+
+    
 
 }
