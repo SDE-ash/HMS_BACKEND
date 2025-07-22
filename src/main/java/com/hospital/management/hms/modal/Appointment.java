@@ -9,6 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,14 +33,19 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long aptId;
 
+    @NotBlank(message = "disorder cannot be empty")
     private String disOrder;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pId")
+    @Valid
+    @NotNull(message = "patient records are rquired")
     private Patient patient;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dId")
+    @Valid
+    @NotNull(message = "Doctor field are required")
     private Doctors doctor;
 
     @OneToOne(cascade = CascadeType.ALL)

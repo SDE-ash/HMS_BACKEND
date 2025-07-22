@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,15 +31,19 @@ public class Doctors {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dId;
 
+    @NotBlank(message = "respective Doctor Name is required")
     private String name;
 
+    @NotNull(message = "age is required")
     private int age;
 
+    @NotNull(message = "experience mu be written")
     private int experince;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @NotBlank(message = "speciality is required")
     private String speciality;
 
 }
