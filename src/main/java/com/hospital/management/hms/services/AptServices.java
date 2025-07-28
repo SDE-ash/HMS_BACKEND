@@ -31,12 +31,19 @@ public class AptServices {
 
 
     public ResponseEntity<?> createAppointment(AppointmentDTO appointmentDTO){
+        Doctors doctor;
         try{
             Patient patient = appointmentDTO.getPatient();
 
             Bill bill = appointmentDTO.getBILL();
             bill.setPatient(patient);
 
+            Optional<Doctors> docOPT =  doctorREPO.findByNameAndSpeciality(appointmentDTO.getDoctor().getName(), appointmentDTO.getDoctor().getSpeciality());
+            if(docOPT.isPresent()){
+                doctor = docOPT.get();
+            }else{
+                doctor = appointmentDTO.getDoctor();
+            }
             // Doctors doctors = appointmentDTO.getDoctor();
             //check if doctor exists or not 
             //if alreayd exiusts not save 
@@ -47,7 +54,7 @@ public class AptServices {
                 .disOrder("cancer")
                 .patient(appointmentDTO.getPatient())
                 .bill(appointmentDTO.getBILL())
-                .doctor(appointmentDTO.getDoctor())
+                .doctor(doctor)
                 .build());
             return new ResponseEntity<String>("NEW APPOINTMENT ADDED", HttpStatus.OK);
         }catch(RuntimeException r){

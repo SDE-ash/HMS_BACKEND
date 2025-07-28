@@ -33,7 +33,7 @@ public class Doctors {
     private Long dId;
 
     @NotBlank(message = "respective Doctor Name is required")
-  
+    @Column(unique = true)
     private String name;
 
     @NotNull(message = "age is required")
