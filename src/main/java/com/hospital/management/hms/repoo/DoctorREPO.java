@@ -13,4 +13,6 @@ public interface DoctorREPO extends JpaRepository<Doctors, Long> {
 
     Optional<Doctors> findBydId(Long id);
 
+    Optional<Doctors> findByNameAndSpeciality(String name, String speciality);
+
 }

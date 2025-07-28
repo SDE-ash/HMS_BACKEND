@@ -2,6 +2,7 @@ package com.hospital.management.hms.modal;
 
 import com.hospital.management.hms.enums.Gender;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,6 +33,7 @@ public class Doctors {
     private Long dId;
 
     @NotBlank(message = "respective Doctor Name is required")
+  
     private String name;
 
     @NotNull(message = "age is required")

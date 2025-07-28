@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +15,19 @@ import com.hospital.management.hms.dtos.AppointmentDTO;
 import com.hospital.management.hms.exceptions.AppointmentNotFoundException;
 import com.hospital.management.hms.modal.Appointment;
 import com.hospital.management.hms.modal.Bill;
+import com.hospital.management.hms.modal.Doctors;
 import com.hospital.management.hms.modal.Patient;
 import com.hospital.management.hms.repoo.AptRepo;
+import com.hospital.management.hms.repoo.DoctorREPO;
 
 @Service
 public class AptServices {
 
     @Autowired
     private AptRepo aptRepo;
+
+    @Autowired
+    private DoctorREPO doctorREPO;
 
 
     public ResponseEntity<?> createAppointment(AppointmentDTO appointmentDTO){
@@ -31,6 +37,10 @@ public class AptServices {
             Bill bill = appointmentDTO.getBILL();
             bill.setPatient(patient);
 
+            // Doctors doctors = appointmentDTO.getDoctor();
+            //check if doctor exists or not 
+            //if alreayd exiusts not save 
+            
             
                 aptRepo.save(Appointment.builder()
                 .aptDate(LocalDateTime.now())
@@ -41,7 +51,7 @@ public class AptServices {
                 .build());
             return new ResponseEntity<String>("NEW APPOINTMENT ADDED", HttpStatus.OK);
         }catch(RuntimeException r){
-           return new ResponseEntity<RuntimeException>(r, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<RuntimeException>(r, HttpStatus.BAD_REQUEST);
         }
     }
 
